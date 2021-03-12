@@ -1,0 +1,8 @@
+a=input()
+b=input()
+c=input()
+d=input()
+e=input()
+f=input()
+print(a+b+c)
+print(float(d)+float(e)+float(f))
