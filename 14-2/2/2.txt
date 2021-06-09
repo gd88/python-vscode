@@ -1,0 +1,43 @@
+1
+for (i = 1; i <= 3; i++)
+        intArr[i] = i;
+
+inArr이 가리키는 heap 영역에는 int 3개의 크기가 들어가 있어 index가 2까지 밖에 없다.
+따라서 인덱스 2까지만 설정해줘야 한다
+
+2.
+    for (i = 0; i < arrLen; i++)
+        printf("%lf ", doubleArr[i]);
+    printf("\n");
+
+    char* charArr1 = (char*)allocatePtr(sizeof(char) * arrLen);에서 double이 가리키는 heap영역의 메모리는 
+    if (ptrCnt == MAX_PTR) {
+        printf("Freeing all allocated memories...\n");
+        clearPtrList();
+}
+와
+  void clearPtrList() {
+    for (int i = 0; i < ptrCnt; i++)
+        free(allocPtrList[i]);
+
+    ptrCnt = 0;
+}
+로 인해 삭제됐다. 위에서 두번사용해 ptrCnts는 2이다. 따라서 이 반복문은 삭제돼어야 한다.
+
+3.
+.
+    free(charArr1);
+    free(charArr2);
+
+charArr1이 가리키는 메모리와 charArr2가 가리키는 메모리는 char* charArr3 = (char*)allocatePtr(sizeof(char) * arrLen); 가 나오면서 
+void clearPtrList() {
+    for (int i = 0; i < ptrCnt; i++)
+        free(allocPtrList[i]);
+
+    ptrCnt = 0;
+}
+로 인해 삭제돼었다.
+char* charArr1 = (char*)allocatePtr(sizeof(char) * arrLen);
+char* charArr2 = (char*)allocatePtr(sizeof(char) * arrLen); 
+로 인해 ptrCnt=2이다.
+따라서 free함수를 두번씩 썼으므로 삭제돼어야한다.
