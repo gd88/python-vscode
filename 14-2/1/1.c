@@ -30,7 +30,7 @@ int main()
    {
       Person aperson;
       scanf("%s %d", aperson.name, &aperson.score);
-      if ((strcmp(aperson.name, "END") && aperson.name) == 0)
+    if ((strcmp(aperson.name, "END") == 0) && (aperson.score == 0))
       {
          break;
       }
