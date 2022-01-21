@@ -1,0 +1,67 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: cl.exe 활성 파일 빌드",
+			"command": "%BUILD%",
+			"args": [
+				"/O2",
+				"/Zi",
+				"/EHsc",
+				"/nologo",
+				"/Fe:",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"${file}"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}",
+				"env": {
+					"PATH": "${env:PATH};C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\Common7\\Tools",
+            		"BUILD": "chcp 65001 && VsDevCmd.bat && cl.exe"
+				}
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "c 또는 cpp 파일 빌드"
+		},
+		{
+			"type": "cppbuild",
+			"label": "C/C++: cl.exe 활성 파일 빌드 (+ASan)",
+			"command": "%BUILD%",
+			"args": [
+				"/fsanitize=address",
+				"/O2",
+				"/Zi",
+				"/EHsc",
+				"/nologo",
+				"/Fe:",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"${file}"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}",
+				"env": {
+					"PATH": "${env:PATH};C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\Common7\\Tools",
+            		"BUILD": "chcp 65001 && VsDevCmd.bat && cl.exe"
+				}
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "ASan을 사용해 c 또는 cpp 파일 빌드"
+		},
+		{
+			"label": "C/C++: 활성 파일 실행",
+			"command": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			"detail": "빌드된 exe 파일 실행"
+		}
+	]
+}
